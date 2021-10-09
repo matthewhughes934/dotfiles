@@ -5,6 +5,7 @@ set -eu
 USAGE="$0: < inc | dec | set > [ value ]"
 TARGET="/sys/class/backlight/amdgpu_bl0/brightness"
 CURRENT="$(cat "${TARGET}")"
+DEFAULT_INC=20
 
 if [[ $# -lt 1 || $# -gt 2 ]]
 then
@@ -15,11 +16,11 @@ fi
 case "$1" in
     "inc")
         # shellcheck disable=SC2116,SC2004
-        BRIGHTNESS="$(echo $((${2:-10} + $CURRENT)))"
+        BRIGHTNESS="$(echo $((${2:-$DEFAULT_INC} + $CURRENT)))"
         ;;
      "dec")
         # shellcheck disable=SC2116,SC2004
-        BRIGHTNESS="$(echo "$(($CURRENT - ${2:-10}))")"
+        BRIGHTNESS="$(echo "$(($CURRENT - ${2:-$DEFAULT_INC}))")"
         ;;
      "set")
          if [[ $# -ne 2 ]]
