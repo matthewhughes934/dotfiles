@@ -1,0 +1,10 @@
+setlocal nospell
+:noremap <buffer> <CR> :call setline(1, getline('.')) <bar> :2,$ delete <bar> :x! <CR>
+function! ClearIfMoreThanOneLine()
+    if line('$') > 1
+        :1,$ delete
+        :x!
+    endif
+endfunction
+
+autocmd QuitPre <buffer> call ClearIfMoreThanOneLine()

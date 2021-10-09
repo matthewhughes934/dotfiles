@@ -19,3 +19,5 @@ alias xclipb='xclip -selection "clipboard"'
 function mcd {
     mkdir --parents "$1" && cd "$1"
 }
+
+alias historvi='fc -re "vim -S ~/.fcrc" -$HISTSIZE -1'
