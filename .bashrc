@@ -8,9 +8,6 @@ then
     return
 fi
 
-alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
-
 if [ -d ~/.bashrc.d ]
 then
     for f in ~/.bashrc.d/*.sh
