@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -eu
+
+USAGE="$0: 1 | 0"
+
+if [[ $# -eq 1 ]]
+then
+    case "$1" in
+    "0")
+        amixer sset Capture cap >/dev/null
+        echo 0 > /sys/class/leds/platform::micmute/brightness
+        exit 0
+        ;;
+    "1")
+        amixer sset Capture nocap >/dev/null
+        echo 1 > /sys/class/leds/platform::micmute/brightness
+        exit 0
+        ;;
+    esac
+fi
+
+echo $#
+
+echo "$USAGE" >&2
+exit 1
+

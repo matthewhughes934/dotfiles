@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -eu
+
+USAGE="$0: 1 | 0"
+
+if [[ $# -eq 1 ]]
+then
+    case "$1" in
+    "0")
+        amixer sset Master unmute >/dev/null
+        # consider also
+        # amixer sset Front unmute
+        # amixr sset Headphone unmute
+        echo 0 > /sys/class/leds/platform::mute/brightness
+        exit 0
+        ;;
+    "1")
+        amixer sset Master mute >/dev/null
+        echo 1 > /sys/class/leds/platform::mute/brightness
+        exit 0
+        ;;
+    esac
+fi
+
+echo $#
+
+echo "$USAGE" >&2
+exit 1
+
