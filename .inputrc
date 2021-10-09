@@ -1,0 +1,36 @@
+set editing-mode vi
+set blink-matching-paren on
+
+### Completion tweaks
+set completion-ignore-case on
+set colored-completion-prefix on
+# colour according to file type
+set colored-stats on
+# make type of file clear
+set visible-stats on
+set mark-directories on
+set mark-symlinked-directories on
+
+# Prevent pasted characters being interpreted as editing commands
+set enable-bracketed-paste on
+
+# Command mode bindings
+set keymap vi-command
+Control-l: clear-screen
+Control-k: kill-whole-line
+$if Bash
+    "\C-p": "ihistorvi\n"
+    "\C-x\C-r": re-read-init-file
+$endif
+# End command mode
+
+# Insert mode bindings
+set keymap vi-insert
+Control-l: clear-screen
+Control-k: kill-whole-line
+$if Bash
+    Space: magic-space
+    Control-a: possible-completions
+    "\C-p": "historvi\n"
+$endif
+# End insert mode
