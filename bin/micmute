@@ -1,4 +1,0 @@
-#!/bin/bash
-
-set -eu
-toggle_micmute 1
