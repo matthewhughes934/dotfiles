@@ -1,0 +1,16 @@
+# Python settings
+# ===============
+
+# Source files
+# ------------
+*.py    text diff=python
+
+# Vim settings
+==============
+
+# Vim on Linux works with LF only, Vim on Windows works with both LF and CRLF
+
+# Source files
+# ------------
+*.vim   text eol=lf
+.vimrc  text eol=lf

@@ -1,0 +1,8 @@
+# Vim
+*.sess
+*.sw?
+.vimrc
+
+# ctags and friends
+*.ctags
+tags
