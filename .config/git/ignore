@@ -6,3 +6,5 @@
 # ctags and friends
 *.ctags
 tags
+
+.venv/
