@@ -1,0 +1,11 @@
+" vim: ft=vim
+:set nocompatible
+
+function! ClearAllButCurrentWord()
+    :call setline(1, expand('<cWORD>'))
+    if line('$') > 1
+        :2,$ delete
+    endif
+endfunction
+
+:noremap <CR> :call ClearAllButCurrentWord() <CR> <bar> :x! <CR>

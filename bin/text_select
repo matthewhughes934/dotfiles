@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export EDITOR=" vim -u NONE -S $HOME/.viperc"
+
+# vipe provided by 'moreutils'
+vipe "$@"
