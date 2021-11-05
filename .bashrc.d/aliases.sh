@@ -21,3 +21,6 @@ function mcd {
 }
 
 alias historvi='fc -re "vim -S ~/.fcrc" -$HISTSIZE -1'
+
+alias kb_us='setxkbmap -layout us'
+alias kb_int='setxkbmap -layout us -variant intl'
