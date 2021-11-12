@@ -1,0 +1,5 @@
+# vim: set filetype=python:
+
+import rlcompleter
+
+__import__("pdb").Pdb.complete = rlcompleter.Complete(locals()).complete
