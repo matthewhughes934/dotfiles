@@ -109,3 +109,5 @@
 [user]
     name = "Matthew Hughes"
     email = matthewhughes934@gmail.com
+[init]
+	defaultBranch = main
