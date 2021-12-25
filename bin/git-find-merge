@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Usage: find merge commit in $2 (or main branch) that introduced change $1
+
+set -o errexit -o pipefail -o nounset
+
+if [ $# -lt 1 ]
+then
+    echo "Usage: $0 feature_commit [ merge_branch ]" >&2
+    exit 1
+fi
+
+common_commits="$(\
+    git rev-list --ancestry-path \
+    "$1".."${2:-$(git root-branch)}" \
+)"
+feature_commits="$(\
+    git rev-list --first-parent \
+    "$1".."${2:-$(git root-branch)}" \
+)"
+
+cat <(echo "$common_commits") <(echo "$feature_commits") | \
+    awk '{if ($1 in seen || seen[$1]=1) {print($1)}}' | \
+    tail --lines=1

@@ -9,15 +9,6 @@
     st = "status"
 
     ## Non-trivial aliases
-    # First merge that introduced SHA $1 into $2 (default master)
-    fnd-merge = "!f() {\
-        (\
-            git rev-list --ancestry-path "$1".."${2:-$(git root-branch)}"; \
-            git rev-list --first-parent "$1".."${2:-$(git root-branch)}" \
-        ) \
-        | awk '{if ($1 in seen || seen[$1]=1) {print($1)}}' \
-        | tail --lines=1; \
-    }; f"
 
     ### Diff viewers
     # 'diff-open', open difftool for changes from $1 (default master) and $2
