@@ -35,13 +35,6 @@
         "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
     }; f"
 
-    # 'master' or 'main'?
-    root-branch = "!f() {\
-        git rev-parse --quiet --verify master >/dev/null \
-        && echo 'master' \
-        || echo 'main'; \
-    }; f"
-
     # fixups
     select-commit = "!f() {\
         git ol-changes "$@" | text_select; \

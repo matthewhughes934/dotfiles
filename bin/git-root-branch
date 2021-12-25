@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Naive script: is the root branch 'master' or 'main'?
+
+set -o errexit -o nounset
+
+if git rev-parse --quiet --verify master >/dev/null
+then
+    echo "master"
+else
+    echo "main"
+fi
