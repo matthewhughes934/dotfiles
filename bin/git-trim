@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -o errexit -o pipefail -o nounset
+
+branches="$(git branch --merged | awk 'NF==1' | tr --delete ' ')"
+
+if [ -z "$branches" ]
+then
+    echo "No merged branches"
+    exit 0
+fi
+
+echo "$branches" | xargs git branch --delete

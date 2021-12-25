@@ -35,14 +35,6 @@
         "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
     }; f"
 
-    # delete any branches in HEAD
-    trim = "!f() {\
-        branches=$(git branch --merged | awk 'NF==1'); \
-        [ -z \"$branches\" ] && echo 'No merged branches' 1>&2 \
-            && return 1; \
-        git branch --delete $branches; \
-    }; f"
-
     # 'master' or 'main'?
     root-branch = "!f() {\
         git rev-parse --quiet --verify master >/dev/null \
