@@ -2,4 +2,4 @@
 
 import rlcompleter
 
-__import__("pdb").Pdb.complete = rlcompleter.Complete(locals()).complete
+__import__("pdb").Pdb.complete = rlcompleter.Completer(locals()).complete
