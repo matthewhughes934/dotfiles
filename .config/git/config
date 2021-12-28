@@ -59,6 +59,9 @@
     squasha = "!f() {\
         git commit --all --squash="$(git select-commit $@)"; \
     }; f"
+
+    # rebase interactively but with a no-op editor. This means any fixup or
+    # squash commits will be silently applied
     rebaseq = "!f() { GIT_SEQUENCE_EDITOR=: git rebase --interactive "$@"; }; f"
 [color "status"]
     changed = yellow
