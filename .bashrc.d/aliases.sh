@@ -20,7 +20,7 @@ function mcd {
     mkdir --parents "$1" && cd "$1"
 }
 
-alias historvi='fc -re "vim -S ~/.fcrc" -$HISTSIZE -1'
+alias historvi="fc -re 'vim -S $HOME/.config/historvi/config' -$HISTSIZE -1"
 
 alias kb_us='setxkbmap -layout us'
 alias kb_int='setxkbmap -layout us -variant intl'

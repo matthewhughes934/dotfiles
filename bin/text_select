@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EDITOR=" vim -u NONE -S $HOME/.viperc"
+export EDITOR=" vim -u NONE -S $HOME/.config/text_select/config"
 
 # vipe provided by 'moreutils'
 vipe "$@"

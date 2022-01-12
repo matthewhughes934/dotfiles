@@ -1,6 +1,6 @@
-" vim: ft=vim
+" vim: filetype=vim
+"
 :set nocompatible
-
 function! ClearAllButCurrentWord()
     :call setline(1, expand('<cWORD>'))
     if line('$') > 1

@@ -1,3 +1,5 @@
+" vim: filetype=vim
+
 setlocal nospell
 :noremap <buffer> <CR> :call setline(1, getline('.')) <bar> :2,$ delete <bar> :x! <CR>
 function! ClearIfMoreThanOneLine()
