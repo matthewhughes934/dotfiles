@@ -1,6 +1,7 @@
 source ~/.vimrc.d/vundle/vundle.vim
 
 filetype plugin on
+syntax on
 set completeopt-=preview
 
 " focus cursor
@@ -22,22 +23,11 @@ set textwidth=79
 
 set splitright
 
-syntax on
 set colorcolumn=0
 
 " Spelling settings
 set spell spelllang=en_au
 set spellfile=$HOME/.vim/spell/en.utf-8.add
-
-" status line changes
-function! SyntaxItem()
-  return synIDattr(synID(line("."),col("."),1),"name")
-endfunction
-set statusline=%f\ %{SyntaxItem()}\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)
-set laststatus=2
-
-" ##### Commands
-command! Browse :vnew +setl\ buftype=nofile | 0put =v:oldfiles | nnoremap <buffer> <CR> :e <C-r>=getline('.')<CR><CR>
 
 set autoread
 
@@ -45,17 +35,13 @@ set autoread
 set wildmode=longest,list,full
 set wildmenu
 
-" misc
-let g:loaded_logipat = 1
-filetype indent plugin on
-
 " source local files
 for f in split(glob('~/.vimrc.d/*.vim'), '\n')
     exe 'source' f
 endfor
 
 set hlsearch
-nnoremap <silent> <esc> :noh<return><esc>
+nnoremap <silent> <esc> :nohlsearch<return><esc>
 " required to make binding to <esc> work
 nnoremap <esc>^[ <esc>^[
 
