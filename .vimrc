@@ -35,6 +35,8 @@ set autoread
 set wildmode=longest,list,full
 set wildmenu
 
+set clipboard=unnamedplus
+
 " source local files
 for f in split(glob('~/.vimrc.d/*.vim'), '\n')
     exe 'source' f
