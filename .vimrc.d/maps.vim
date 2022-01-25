@@ -5,7 +5,7 @@ let mapleader=','
 cabbrev E Explore
 
 nnoremap <F8> :bufdo bd<CR>
-nnoremap <C-K> :Ack! ''<left>
+nnoremap <C-K> :silent! grep! ''<left>
 nnoremap <C-]> :execute "tjump " . expand("<cword>")<CR>
 nnoremap <C-J> :execute "ptag " . expand("<cword>")<CR>
 nnoremap <C-N> :CtrlPBufTag<CR>
