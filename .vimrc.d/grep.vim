@@ -1,12 +1,13 @@
 if isdirectory('.git')
-    setlocal grepprg=git\ grep\ --no-color\ --line-number\ $*
+    set grepprg=git\ grep\ --no-color\ --line-number\ $*
 else
     set grepprg=ag\ --vimgrep\ $*
     set grepformat=%f:%l:%c:%m
 endif
 
-" open the quickfix window if there's a match
 augroup quickfix
     autocmd!
+    " open the quickfix window if there's a match
     autocmd QuickFixCmdPost grep cwindow
+    autocmd QuickFixCmdPost grep redraw!
 augroup END
