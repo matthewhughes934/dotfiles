@@ -40,29 +40,35 @@
         git ol-changes "$@" | text_select; \
     }; f"
     fixup = "!f() {\
+        : git commit ; \
         git commit --fixup="$(git select-commit $@)"; \
     }; f"
     fixupp = "!f() {\
+        : git commit ; \
         git commit --patch --fixup="$(git select-commit $@)"; \
     }; f"
     fixupa = "!f() {\
+        : git commit ; \
         git commit --all --fixup="$(git select-commit $@)"; \
     }; f"
 
     # squashing
     squash = "!f() {\
+        : git commit ; \
         git commit --squash="$(git select-commit $@)"; \
     }; f"
     squashp = "!f() {\
+        : git commit ; \
         git commit --patch --squash="$(git select-commit $@)"; \
     }; f"
     squasha = "!f() {\
+        : git commit ; \
         git commit --all --squash="$(git select-commit $@)"; \
     }; f"
 
     # rebase interactively but with a no-op editor. This means any fixup or
     # squash commits will be silently applied
-    rebaseq = "!f() { GIT_SEQUENCE_EDITOR=: git rebase --interactive "$@"; }; f"
+    rebaseq = "!f() { : git rebase ; GIT_SEQUENCE_EDITOR=: git rebase --interactive "$@"; }; f"
 [color "status"]
     changed = yellow
 [color "interactive"]
