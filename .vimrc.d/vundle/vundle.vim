@@ -16,10 +16,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 " end snipmate
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'inkarkat/vim-CursorLineCurrentWindow'
-Plugin 'cespare/vim-toml'
 call vundle#end()
 filetype plugin indent on
