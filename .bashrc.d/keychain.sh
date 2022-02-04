@@ -1,7 +1,7 @@
 #!/bin/bash
 
 unlock_key () {
-    ssh-add -t 1800 "$HOME/.ssh/$@"
+    ssh-add -t 7200 "$HOME/.ssh/$@"
 }
 
 _complete_unlock_key () {
