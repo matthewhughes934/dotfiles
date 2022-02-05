@@ -1,11 +1,27 @@
 #!/bin/bash
 
-alias dotfiles="git --git-dir=$HOME/.dotfiles/dotfiles --work-tree=$HOME"
-alias i3config="git --git-dir=$HOME/.dotfiles/i3 --work-tree=$HOME"
-alias neomuttconfig="git --git-dir=$HOME/.dotfiles/neomuttcfg --work-tree=$HOME"
-alias neomuttconfigpriv="git --git-dir=$HOME/.dotfiles/neomuttcfgpriv --work-tree=$HOME"
+__git_complete_wrapper () {
+    export GIT_DIR="$1" GIT_WORK_TREE="$2"
+    __git_wrap__git_main "$3"
+    unset GIT_DIR GIT_WORK_TREE
+}
 
-__git_complete dotfiles git
-__git_complete i3config git
-__git_complete neomuttconfig git
-__git_complete neomuttconfigpriv git
+__complete_git_alias () {
+    local wrapper
+    local alias_name
+    alias_name="$3"
+    wrapper="__complete_git_alias_{$alias_name}"
+    eval "$wrapper () { __git_complete_wrapper $1 $2 $3; }"
+
+    complete -o bashdefault -o default -o nospace -F "$wrapper" "$alias_name" 2>/dev/null \
+		|| complete -o default -o nospace -F "$wrapper" "$alias_name"
+}
+
+__alias_git () {
+    eval "alias $3='git --git-dir=$1 --work-tree=$2'"
+    __complete_git_alias "$1" "$2" "$3"
+}
+
+__alias_git "$HOME/.dotfiles/dotfiles/" "$HOME" dotfiles
+__alias_git "$HOME/.dotfiles/neomuttcfg" "$HOME" neomuttconfig
+__alias_git "$HOME/.dotfiles/neomuttcfgpriv" "$HOME" neomuttconfigpriv
