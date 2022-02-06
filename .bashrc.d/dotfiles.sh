@@ -1,17 +1,11 @@
 #!/bin/bash
 
-__git_complete_wrapper () {
-    export GIT_DIR="$1" GIT_WORK_TREE="$2"
-    __git_wrap__git_main "$3"
-    unset GIT_DIR GIT_WORK_TREE
-}
-
 __complete_git_alias () {
     local wrapper
     local alias_name
     alias_name="$3"
     wrapper="__complete_git_alias_{$alias_name}"
-    eval "$wrapper () { __git_complete_wrapper $1 $2 $3; }"
+    eval "$wrapper () { GIT_DIR='$1' GIT_WORK_TREE='$2' __git_wrap__git_main '$3'; }"
 
     complete -o bashdefault -o default -o nospace -F "$wrapper" "$alias_name" 2>/dev/null \
 		|| complete -o default -o nospace -F "$wrapper" "$alias_name"
