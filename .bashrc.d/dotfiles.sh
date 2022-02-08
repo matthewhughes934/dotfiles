@@ -19,3 +19,4 @@ __alias_git () {
 __alias_git "$HOME/.dotfiles/dotfiles/" "$HOME" dotfiles
 __alias_git "$HOME/.dotfiles/neomuttcfg" "$HOME" neomuttconfig
 __alias_git "$HOME/.dotfiles/neomuttcfgpriv" "$HOME" neomuttconfigpriv
+__alias_git "$HOME/.dotfiles/i3" "$HOME" i3config
