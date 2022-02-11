@@ -24,3 +24,12 @@ alias historvi="fc -re 'vim -S $HOME/.config/historvi/config' -$HISTSIZE -1"
 
 alias kb_us='setxkbmap -layout us'
 alias kb_int='setxkbmap -layout us -variant intl'
+
+alias start_record_history='\
+    shopt -s histappend; \
+    _OLD_PROMPT_COMMAND="$PROMPT_COMMAND"; \
+    PROMPT_COMMAND="history -a;$PROMPT_COMMAND";'
+alias stop_record_history='\
+    shopt -u histappend; \
+    PROMPT_COMMAND="$_OLD_PROMPT_COMMAND"; \
+    unset _OLD_PROMPT_COMMAND'
