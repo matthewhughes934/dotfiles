@@ -3,7 +3,7 @@
 
 # Source files
 # ------------
-*.py    text diff=python
+*.py    diff=python
 
 # Vim settings
 ==============

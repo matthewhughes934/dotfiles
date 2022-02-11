@@ -83,6 +83,7 @@
     excludesfile = ~/.config/git/ignore
     attributesFile = ~/.config/git/attributes
     pager = less --quit-if-one-screen --no-init
+    autocrlf = input
 [diff]
     tool = vimdiff
     cmd = "-c 'set diffopt+=iwhite'"
