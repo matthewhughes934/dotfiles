@@ -1,4 +1,4 @@
 setlocal iskeyword+=.
-setlocal keywordprg=go\ doc
+setlocal keywordprg=godoc
 setlocal formatprg=gofmt
 setlocal makeprg=go\ build\ %
