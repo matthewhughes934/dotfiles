@@ -1,2 +1,5 @@
 set disassembly-flavor intel
 set print pretty on
+
+# for debugging go
+add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
