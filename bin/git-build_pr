@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -o errexit -o nounset -o pipefail
+
+REV_START="${1:-$(git root-branch)}"
+REV_END="${2:-HEAD}"
+
+# e.g. Ticket: FOO-123
+TICKET_RE="^Ticket:"
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+branch_description="$(git config --local \
+    "branch.$current_branch.description" || printf "" \
+)"
+changes="$(git log --reverse --format='- %s%n%n%b' \
+    "$REV_END" "^$REV_START"\
+)"
+raw_ticket="$(grep "$TICKET_RE" <<< "$changes" || printf "" | head --lines 1)"
+ticket="$(cut --delimiter ":" --fields 2- <<< "$raw_ticket")"
+
+if [ "$branch_description" ]
+then
+    printf '%s\n\n' "$branch_description"
+fi
+
+# remove the ticket
+# Indent all non-commit subject lines by 4 spaces (assumes subjects don't
+# contain lines starting with '-')
+# Strip out any consecutive empty lines
+sed --quiet \
+    --expression '/^Ticket:.*$/d' \
+    --expression 's/^[^-]/    &/g' \
+    --expression '/[^\n]/,/^$/p' <<< "$changes"
+
+if [ "$ticket" ]
+then
+    echo "Ticket: $ticket"
+fi
