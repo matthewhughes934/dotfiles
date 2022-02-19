@@ -5,6 +5,8 @@
 # ------------
 *.py    diff=python
 
+*.go    diff=golang
+
 # Vim settings
 ==============
 
