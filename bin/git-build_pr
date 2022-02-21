@@ -15,7 +15,7 @@ branch_description="$(git config --local \
 changes="$(git log --reverse --format='- %s%n%n%b' \
     "$REV_END" "^$REV_START"\
 )"
-raw_ticket="$(grep "$TICKET_RE" <<< "$changes" || printf "" | head --lines 1)"
+raw_ticket="$(grep --max-count 1 "$TICKET_RE" <<< "$changes" || printf "")"
 ticket="$(cut --delimiter ":" --fields 2- <<< "$raw_ticket")"
 
 if [ "$branch_description" ]
