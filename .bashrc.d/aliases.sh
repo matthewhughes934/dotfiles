@@ -33,3 +33,8 @@ alias stop_record_history='\
     shopt -u histappend; \
     PROMPT_COMMAND="$_OLD_PROMPT_COMMAND"; \
     unset _OLD_PROMPT_COMMAND'
+
+function go-compile-test {
+    # for flags, see: go tool compile -help
+    go test -c -gcflags '-N -l' "$@"
+}
