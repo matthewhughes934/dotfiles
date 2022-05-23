@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -o errexit -o nounset
+
+if [ $# -lt 1 ]
+then
+    echo "Usage: show-merge [ git log args ] commit-SHA" >&2
+    exit 1
+fi
+
+commit_sha="${!#}"
+
+if [ "$(git rev-list --no-walk --count --merges $commit_sha)" -eq 0 ]
+then
+    echo "$commit_sha doesn't look like a merge commit" >&2
+    exit 1
+fi
+
+git log "${@:1:$#-1}" "$commit_sha^..$commit_sha^2"
