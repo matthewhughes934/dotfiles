@@ -8,3 +8,5 @@
 tags
 
 .venv*/
+# used by pyenv
+.python-version
