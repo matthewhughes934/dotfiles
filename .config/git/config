@@ -93,6 +93,7 @@
     tool = vimdiff
 [push]
     default = current
+    autoSetupRemote = true
 [rebase]
     autosquash = true
 [user]
