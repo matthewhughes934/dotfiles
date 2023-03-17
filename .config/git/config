@@ -3,6 +3,8 @@
     cb = "rev-parse --abbrev-ref HEAD" # current-branch
     co = "checkout"
     current-branch = "rev-parse --abbrev-ref HEAD"
+    select-branch = "!f() { git branch | sed 's/^[* ]\\+//' | text_select; }; f"
+    sb = "!f() { git checkout "$(git select-branch)"; }; f"
     d = difftool
     head = "rev-parse HEAD"
     nb = "checkout -b" # new-branch
