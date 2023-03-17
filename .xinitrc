@@ -50,4 +50,5 @@ then
 fi
 
 # Start window manager
-/usr/bin/i3
+# view logs with `journalctl SYSLOG_IDENTIFIER=i3`
+/usr/bin/i3 2>&1 1>/dev/null | logger --tag i3
