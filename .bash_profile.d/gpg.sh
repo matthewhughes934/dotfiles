@@ -1,1 +1,1 @@
-export GNUPGHOME="${XDG_CONFIG_HOME:-/home/mjh/.config/gnupg}"
+export GNUPGHOME="${XDG_CONFIG_HOME:-/home/mjh/.config}/gnupg"
