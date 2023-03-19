@@ -1,3 +1,3 @@
 #!/bin/bash
 
-eval "$(dircolors --sh "$HOME/.dircolors")"
+eval "$(dircolors --sh "$HOME/.config/dircolors/config")"
