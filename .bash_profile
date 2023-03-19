@@ -2,7 +2,7 @@ export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
 if [ -d ~/.bash_profile.d ]
 then
-    for f in ~/.bash_profile.d/*.sh
+    for f in ~/.config/bash/profile/*.sh
     do
         source "$f"
     done

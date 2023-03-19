@@ -17,7 +17,7 @@ stty -ixon
 
 if [ -d ~/.bashrc.d ]
 then
-    for f in ~/.bashrc.d/*.sh
+    for f in ~/.config/bash/rc/*.sh
     do
         source "$f"
     done
