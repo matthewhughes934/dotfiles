@@ -1,6 +1,6 @@
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
-if [ -d ~/.bash_profile.d ]
+if [ -d ~/.config/bash/profile ]
 then
     for f in ~/.config/bash/profile/*.sh
     do

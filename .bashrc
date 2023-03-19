@@ -15,7 +15,7 @@ HISTFILESIZE=2000
 # Stops Ctrl+S from locking the terminal
 stty -ixon
 
-if [ -d ~/.bashrc.d ]
+if [ -d ~/.config/bash/rc/ ]
 then
     for f in ~/.config/bash/rc/*.sh
     do
