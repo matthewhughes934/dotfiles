@@ -16,7 +16,7 @@ __alias_git () {
     __complete_git_alias "$1" "$2" "$3"
 }
 
-__alias_git "$HOME/.dotfiles/dotfiles/" "$HOME" dotfiles
-__alias_git "$HOME/.dotfiles/neomuttcfg" "$HOME" neomuttconfig
-__alias_git "$HOME/.dotfiles/neomuttcfgpriv" "$HOME" neomuttconfigpriv
-__alias_git "$HOME/.dotfiles/i3" "$HOME" i3config
+__alias_git "$XDG_DATA_HOME/dotfiles/dotfiles/" "$HOME" dotfiles
+__alias_git "$XDG_DATA_HOME/dotfiles/neomuttcfg" "$HOME" neomuttconfig
+__alias_git "$XDG_DATA_HOME/dotfiles/neomuttcfgpriv" "$HOME" neomuttconfigpriv
+__alias_git "$XDG_DATA_HOME/dotfiles/i3" "$HOME" i3config
