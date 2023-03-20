@@ -6,3 +6,11 @@ gocov() {
     # https://github.com/golang/go/blob/ffbd194f5cf399a98578ea950c969d07a751ecfd/src/cmd/vendor/golang.org/x/tools/cover/profile.go#L58
     awk 'NR>1 && $NF==0 {print $1}' "$filename"
 }
+
+godoc() {
+    go doc "$@" | less
+}
+
+gohelp() {
+    go help "$@" | less
+}
