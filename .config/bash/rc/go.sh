@@ -8,8 +8,9 @@ gocov() {
 }
 
 godoc() {
-    go doc "$@" | less
+    go doc -all "$@" | less
 }
+export -f godoc
 
 gohelp() {
     go help "$@" | less
