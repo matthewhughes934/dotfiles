@@ -11,3 +11,6 @@ nnoremap <C-J> :execute "ptag " . expand("<cword>")<CR>
 nnoremap <C-N> :CtrlPBufTag<CR>
 nnoremap [g :cn<CR>
 nnoremap ]g :cp<CR>
+" in structured languages, go to next/prev function
+nnoremap [f [m[{
+nnoremap ]f ]}]m
