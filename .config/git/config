@@ -74,6 +74,8 @@
         : git rebase ; \
         GIT_SEQUENCE_EDITOR=: git rebase --interactive "$@"; \
     }; f"
+
+    ctags = ! git ls-files | ctags -L-
 [color "status"]
     changed = yellow
 [color "interactive"]
