@@ -15,3 +15,6 @@ export -f godoc
 gohelp() {
     go help "$@" | less
 }
+
+# go build -gcflags="$GODEBUG_FLAGS"
+export GODEBUG_FLAGS="-N -l"
