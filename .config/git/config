@@ -1,107 +1,107 @@
 [alias]
-    br = "branch"
-    cb = "rev-parse --abbrev-ref HEAD" # current-branch
-    co = "checkout"
-    current-branch = "rev-parse --abbrev-ref HEAD"
-    select-branch = "!f() { git branch | sed 's/^[* ]\\+//' | text_select; }; f"
-    sb = "!f() { git checkout "$(git select-branch)"; }; f"
-    d = difftool
-    head = "rev-parse HEAD"
-    nb = "checkout -b" # new-branch
-    st = "status"
+	br = "branch"
+	cb = "rev-parse --abbrev-ref HEAD" # current-branch
+	co = "checkout"
+	current-branch = "rev-parse --abbrev-ref HEAD"
+	select-branch = "!f() { git branch | sed 's/^[* ]\\+//' | text_select; }; f"
+	sb = "!f() { git checkout "$(git select-branch)"; }; f"
+	d = difftool
+	head = "rev-parse HEAD"
+	nb = "checkout -b" # new-branch
+	st = "status"
 
-    ## Non-trivial aliases
+	## Non-trivial aliases
 
-    ### Diff viewers
-    # 'diff-open', open difftool for changes from $1 (default master) and $2
-    # (default HEAD)
-    do-changes = "!f() {\
-        git difftool --prompt --ignore-all-space \
-        "${1:-$(git root-branch)}"..."${2:-HEAD}"; \
-    }; f"
-    # name files changed from $1 (default $(git root-branch)) and $2 (default HEAD)
-    name-changes = "!f() {\
-        git diff --name-only "$(git merge-base "${1:-$(git root-branch)}" "${2:-HEAD}")"; \
-    }; f"
-    # same as 'show-changes' but just show a one-line summary
-    ol-changes = "!f() {\
-        git log --reverse --oneline "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
-    }; f"
-    l-changes = "!f() {\
-        git log --reverse "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
-    }; f"
-    # show commit + patch for each commit from $1 (default $(git root-branch)) and $2
-    # (default HEAD)
-    diff-changes = "!f() {\
-        git log --reverse --no-merges --patch \
-        "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
-    }; f"
+	### Diff viewers
+	# 'diff-open', open difftool for changes from $1 (default master) and $2
+	# (default HEAD)
+	do-changes = "!f() {\
+		git difftool --prompt --ignore-all-space \
+		"${1:-$(git root-branch)}"..."${2:-HEAD}"; \
+	}; f"
+	# name files changed from $1 (default $(git root-branch)) and $2 (default HEAD)
+	name-changes = "!f() {\
+		git diff --name-only "$(git merge-base "${1:-$(git root-branch)}" "${2:-HEAD}")"; \
+	}; f"
+	# same as 'show-changes' but just show a one-line summary
+	ol-changes = "!f() {\
+		git log --reverse --oneline "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
+	}; f"
+	l-changes = "!f() {\
+		git log --reverse "${2:-HEAD}" "^${1:-$(git root-branch)}"; \
+	}; f"
+	# show commit + patch for each commit from $1 (default $(git root-branch)) and $2
+	# (default HEAD)
+	diff-changes = "!f() {\
+		git log --reverse --no-merges --patch \
+		"${2:-HEAD}" "^${1:-$(git root-branch)}"; \
+	}; f"
 
-    # fixups
-    select-commit = "!f() {\
-        git ol-changes "$@" | text_select; \
-    }; f"
-    fixup = "!f() {\
-        : git commit ; \
-        git commit --fixup="$(git select-commit)" "$@"; \
-    }; f"
-    fixupp = "!f() {\
-        : git commit ; \
-        git commit --patch --fixup="$(git select-commit)" "$@"; \
-    }; f"
-    fixupa = "!f() {\
-        : git commit ; \
-        git commit --all --fixup="$(git select-commit)" "$@"; \
-    }; f"
+	# fixups
+	select-commit = "!f() {\
+		git ol-changes "$@" | text_select; \
+	}; f"
+	fixup = "!f() {\
+		: git commit ; \
+		git commit --fixup="$(git select-commit)" "$@"; \
+	}; f"
+	fixupp = "!f() {\
+		: git commit ; \
+		git commit --patch --fixup="$(git select-commit)" "$@"; \
+	}; f"
+	fixupa = "!f() {\
+		: git commit ; \
+		git commit --all --fixup="$(git select-commit)" "$@"; \
+	}; f"
 
-    # squashing
-    squash = "!f() {\
-        : git commit ; \
-        git commit --squash="$(git select-commit)" "$@"; \
-    }; f"
-    squashp = "!f() {\
-        : git commit ; \
-        git commit --patch --squash="$(git select-commit)" "$@"; \
-    }; f"
-    squasha = "!f() {\
-        : git commit ; \
-        git commit --all --squash="$(git select-commit)" "$@"; \
-    }; f"
+	# squashing
+	squash = "!f() {\
+		: git commit ; \
+		git commit --squash="$(git select-commit)" "$@"; \
+	}; f"
+	squashp = "!f() {\
+		: git commit ; \
+		git commit --patch --squash="$(git select-commit)" "$@"; \
+	}; f"
+	squasha = "!f() {\
+		: git commit ; \
+		git commit --all --squash="$(git select-commit)" "$@"; \
+	}; f"
 
-    # rebase interactively but with a no-op editor. This means any fixup or
-    # squash commits will be silently applied
-    rebaseq = "!f() {\
-        : git rebase ; \
-        GIT_SEQUENCE_EDITOR=: git rebase --interactive "$@"; \
-    }; f"
+	# rebase interactively but with a no-op editor. This means any fixup or
+	# squash commits will be silently applied
+	rebaseq = "!f() {\
+		: git rebase ; \
+		GIT_SEQUENCE_EDITOR=: git rebase --interactive "$@"; \
+	}; f"
 
-    ctags = ! git ls-files | ctags -L-
+	ctags = ! git ls-files | ctags -L-
 [color "status"]
-    changed = yellow
+	changed = yellow
 [color "interactive"]
-    prompt = cyan
+	prompt = cyan
 [commit]
-    verbose=true
+	verbose=true
 [core]
-    editor = vim
-    excludesfile = ~/.config/git/ignore
-    attributesFile = ~/.config/git/attributes
-    pager = less --quit-if-one-screen --no-init
-    autocrlf = input
+	editor = vim
+	excludesfile = ~/.config/git/ignore
+	attributesFile = ~/.config/git/attributes
+	pager = less --quit-if-one-screen --no-init
+	autocrlf = input
 [diff]
-    tool = vimdiff
-    cmd = "-c 'set diffopt+=iwhite'"
+	tool = vimdiff
+	cmd = "-c 'set diffopt+=iwhite'"
 [difftool]
-    prompt = true
+	prompt = true
 [merge]
-    tool = vimdiff
+	tool = vimdiff
 [push]
-    default = current
-    autoSetupRemote = true
+	default = current
+	autoSetupRemote = true
 [rebase]
-    autosquash = true
+	autosquash = true
 [user]
-    name = "Matthew Hughes"
-    email = matthewhughes934@gmail.com
+	name = "Matthew Hughes"
+	email = matthewhughes934@gmail.com
 [init]
-    defaultBranch = main
+	defaultBranch = main
