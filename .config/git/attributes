@@ -8,7 +8,7 @@
 *.go    diff=golang
 
 # Vim settings
-==============
+# ==============
 
 # Vim on Linux works with LF only, Vim on Windows works with both LF and CRLF
 
