@@ -1,6 +1,7 @@
 [alias]
 	br = "branch"
 	cb = "rev-parse --abbrev-ref HEAD" # current-branch
+	rroot = "rev-parse --show-toplevel" # repo-root
 	co = "checkout"
 	current-branch = "rev-parse --abbrev-ref HEAD"
 	select-branch = "!f() { git branch | sed 's/^[* ]\\+//' | text_select; }; f"
