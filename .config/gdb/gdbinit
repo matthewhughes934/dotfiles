@@ -4,3 +4,5 @@ set print pretty on
 # for debugging go
 add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
 add-auto-load-safe-path /home/mjh/src/cpython/python-gdb.py
+
+set debuginfod enabled off
