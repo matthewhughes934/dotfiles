@@ -13,6 +13,7 @@ syntax case match
 " match keywords
 syntax keyword gomodModule  module
 syntax keyword gomodGo      go      contained
+syntax keyword goToolchain  toolchain
 syntax keyword gomodRequire require
 syntax keyword gomodExclude exclude
 syntax keyword gomodReplace replace
@@ -28,6 +29,7 @@ syntax match  gomodGo            '^go .*$'           transparent contains=gomodG
 " set highlights
 highlight default link gomodModule  Keyword
 highlight default link gomodGo      Keyword
+highlight default link goToolchain  Keyword
 highlight default link gomodRequire Keyword
 highlight default link gomodExclude Keyword
 highlight default link gomodReplace Keyword
@@ -46,7 +48,7 @@ syntax match gomodReplaceOperator "\v\=\>"
 highlight default link gomodReplaceOperator Operator
 
 " match go versions
-syntax match gomodGoVersion "1\.\d\+" contained
+syntax match gomodGoVersion "1\.\d\+\(.\d\+\)\?" contained
 highlight default link gomodGoVersion Identifier
 
 " highlight versions:
