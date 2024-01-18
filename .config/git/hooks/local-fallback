@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# allow for a local hook to be run instead of a hook from `core.hooksPath`
+# symlink a hook to this file and if the hook exists locally in any repo it
+# will be run
+
+set -o errexit -o nounset -o pipefail
+
+# name of the current hook (i.e name from symlink)
+HOOK=$(basename "${BASH_SOURCE[0]}")
+
+if [ -z "${GIT_DIR-}" ]
+then
+    GIT_DIR="$(git rev-parse --git-dir)"
+fi
+
+if [ -x "$GIT_DIR/hooks/$HOOK" ]
+then
+    exec "$GIT_DIR/hooks/$HOOK" "$@"
+fi

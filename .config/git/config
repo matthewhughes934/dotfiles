@@ -12,7 +12,6 @@
 	st = "status"
 
 	## Non-trivial aliases
-
 	### Diff viewers
 	# 'diff-open', open difftool for changes from $1 (default master) and $2
 	# (default HEAD)
@@ -87,6 +86,7 @@
 	editor = vim
 	excludesfile = ~/.config/git/ignore
 	attributesFile = ~/.config/git/attributes
+	hooksPath = ~/.config/git/hooks
 	pager = less --quit-if-one-screen --no-init
 	autocrlf = input
 [diff]
