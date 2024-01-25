@@ -19,6 +19,19 @@ syn region goConst
     \ transparent
     \ fold
     \ contains=ALLBUT,goParen,goBlock,goFunction,goTypeName,goReceiverType,goReceiverVar,goParamName,goParamType,goSimpleParams,goPointerOperator,goCommentCodeBlock,goCommentListMarker
+
+" simpler versions of goPackageComment
+" including https://github.com/fatih/vim-go/pull/3637
+syn region  goPackageComment
+        \ start="\v(//.*\n)+\s*package\s"
+        \ end="\v\n\s*\zepackage\s"
+        \ contains=@goCommentGroup,@Spell
+        \ fold
+syn region  goPackageComment
+        \ start="\v^\s*/\*.*\n(.*\n)*\s*\*/\npackage\s"
+        \ end="\v\*/\n\s*\zepackage\s"
+        \ contains=@goCommentGroup,@Spell
+        \ fold
 " END OVERWRITES
 
 " https://go.dev/doc/comment#doclinks
