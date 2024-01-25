@@ -23,33 +23,32 @@ syn region goConst
 
 " https://go.dev/doc/comment#doclinks
 syn match goCommentDocLink
-    \ "\s\zs[[a-zA-Z0-9./-]\+\]\ze\([^a-zA-Z]\|$\)"
+    \ "\v\s\zs\[[a-zA-Z0-9./-]+\]\ze([^a-zA-Z]|$)"
     \ contained
     \ containedin=goComment,goPackageComment
 
 " https://go.dev/doc/comment#code
-" \(\(//\)\|^\)\ matches '//' or start of line (i.e. in a /* */ block)
 syn match goCommentCodeBlock
-    \ "\(\(//\)\|^\)\zs\t.*"
+    \ "\v((//)|^)\zs\t.*"
     \ contained containedin=goComment,goPackageComment
 
 " https://go.dev/doc/comment#lists
 " // comments
 syn match goCommentListMarker
-    \ "\(\(//\)\|^\)\ \{2,\}\zs[*+•-]\ze "
+    \ "\v((//)|^) {2,\}\zs[*+•-]\ze "
     \ contained
     \ containedin=goComment,goPackageComment
 
 " numbered list
 " // comments
 syn match goCommentListMarker
-    \ "\(\(//\)\|^\) \{2,\}\zs[1-9]\.\ze "
+    \ "\v((//)|^) {2,}\zs[1-9]\.\ze "
     \ contained
     \ containedin=goComment,goPackageComment
 
 
 " e.g. //go:build, //go:generate //nolint;
-syn match goDirectiveComment "//\S\+:.\{-}\%(\%(//\)\|$\)\@="
+syn match goDirectiveComment "\v//\S+:.{-}\ze((//)|$)\@="
 
 hi def link goCommentListMarker String
 hi def link goCommentDocLink Float
