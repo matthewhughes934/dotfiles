@@ -22,6 +22,7 @@ syn region goConst
 
 " simpler versions of goPackageComment
 " including https://github.com/fatih/vim-go/pull/3637
+syn clear goPackageComment
 syn region  goPackageComment
         \ start="\v(//.*\n)+\s*package\s"
         \ end="\v\n\s*\zepackage\s"
