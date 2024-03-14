@@ -99,6 +99,8 @@
 [push]
 	default = current
 	autoSetupRemote = true
+[fetch]
+	prune = true
 [rebase]
 	autosquash = true
 [user]
