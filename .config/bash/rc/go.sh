@@ -17,4 +17,4 @@ gohelp() {
 }
 
 # go build -gcflags="$GODEBUG_FLAGS"
-export GODEBUG_FLAGS="-N -l"
+export GODEBUG_FLAGS="all=-N -l"
