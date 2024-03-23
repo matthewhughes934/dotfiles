@@ -10,6 +10,8 @@
 	head = "rev-parse HEAD"
 	nb = "checkout -b" # new-branch
 	st = "status"
+	dlog = "log --ext-diff"
+	dshow = "show --ext-diff"
 
 	## Non-trivial aliases
 	### Diff viewers
@@ -92,6 +94,7 @@
 [diff]
 	tool = vimdiff
 	cmd = "-c 'set diffopt+=iwhite'"
+	external = difft
 [difftool]
 	prompt = true
 [merge]
