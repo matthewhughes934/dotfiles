@@ -37,7 +37,7 @@ syn region  goPackageComment
 
 " https://go.dev/doc/comment#doclinks
 syn match goCommentDocLink
-    \ "\v\s\zs\[[a-zA-Z0-9./-]+\]\ze([^a-zA-Z]|$)"
+    \ "\v\s\zs\[[a-zA-Z0-9./-]+\]\ze([^a-zA-Z]|\n)"
     \ contained
     \ containedin=goComment,goPackageComment
 
