@@ -11,7 +11,7 @@ syntax case match
 " https://golang.org/ref/mod#go-mod-file-grammar
 
 " match keywords
-syntax keyword gomodModule  module
+syntax keyword gomodModule  module  contained
 syntax keyword gomodGo      go      contained
 syntax keyword gomodToolchain  toolchain contained
 syntax keyword gomodRequire require
@@ -26,6 +26,7 @@ syntax region gomodReplace start='replace (' end=')' transparent contains=gomodR
 syntax region gomodRetract start='retract (' end=')' transparent contains=gomodVersionRange,gomodVersion
 syntax match  gomodGo            '^go .*$'           transparent contains=gomodGo,gomodGoVersion
 syntax match  gomodToolchain     '^toolchain .*$'    transparent contains=gomodToolchain,gomodToolchainVersion
+syntax match  gomodModule        '^module .*$'       transparent contains=gomodModule,gomodModuleName
 
 " set highlights
 highlight default link gomodModule  Keyword
@@ -51,6 +52,9 @@ highlight default link gomodReplaceOperator Operator
 " match per https://go.dev/doc/toolchain#version
 syntax match gomodToolchainVersion "go1\.\d\+\(\(.\d\+\)\|\(rc\d\+\)\)\?\([ \t-].*\)\?" contained
 highlight default link gomodToolchainVersion Identifier
+
+" https://go.dev/ref/mod#go-mod-file-module
+syntax match gomodModuleName "[a-zA-Z0-9/._~-]\+$" contained
 
 " match go versions
 syntax match gomodGoVersion "1\.\d\+\(.\d\+\)\?" contained
