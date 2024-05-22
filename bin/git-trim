@@ -20,7 +20,7 @@ do
     ref_name="$(cut --delimiter ' ' --field 2 <<< "$ref")"
     upstream="$(cut --delimiter ' ' --field 3 <<< "$ref")"
 
-    # not sure this will never not be the case...
+    # not sure this will ever not be the case...
     if [ "$ref_type" != 'commit' ]
     then
         echo "unexpected ref type ($ref_type) for $ref_name" >&2
@@ -49,6 +49,7 @@ do
         continue
     fi
 
-    git branch --delete --force "${ref_name#"$REF_PREFIX"}"
+    branch_name="${ref_name#"$REF_PREFIX"}"
+    git branch --delete --force "$branch_name"
 
-done < <(git for-each-ref --format='%(objecttype) %(refname) %(upstream:short)' refs/heads/)
+done < <(git for-each-ref --format='%(objecttype) %(refname) %(upstream:short)' "$REF_PREFIX")
