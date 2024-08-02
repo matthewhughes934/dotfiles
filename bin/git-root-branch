@@ -1,12 +1,24 @@
 #!/bin/bash
 
-# Naive script: is the root branch 'master' or 'main'?
+# Naive script: guess the root branch
+# by checking if a branch that looks like the root branch
+# exists
 
 set -o errexit -o nounset
 
-if git rev-parse --quiet --verify master >/dev/null
-then
-    echo "master"
-else
-    echo "main"
-fi
+candidates=(
+    # 'main' first since some repos might've moved to 'main'
+    # but keep 'master' around
+    "main"
+    "master"
+    "trunk"
+)
+
+for branch in "${candidates[@]}"
+do
+    if git rev-parse --quiet --verify "$branch" >/dev/null
+    then
+        echo "$branch"
+        exit 0
+    fi
+done
