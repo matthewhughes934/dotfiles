@@ -38,6 +38,10 @@
 		git log --reverse --no-merges --patch \
 		"${2:-HEAD}" "^${1:-$(git root-branch)}"; \
 	}; f"
+	my-changes = "!f() {\
+		: git log ; \
+		git log --author=\"$(git config user.name)\" \"$@\"; \
+	}; f"
 
 	# fixups
 	select-commit = "!f() {\
