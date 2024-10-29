@@ -38,3 +38,7 @@ function go-compile-test {
     # for flags, see: go tool compile -help
     go test -c -gcflags '-N -l' "$@"
 }
+
+# convenience function for going to root of git repo
+# git rroot is a custom git alias
+alias gitroot='cd $(git rroot)'
