@@ -4,6 +4,7 @@ PS1=""
 PROMPT_COMMAND=(
     __prompt_setup
     __prompt_suffix_exit_code
+    __prompt_suffix_jobs
     __prompt_suffix_path
     __prompt_suffix_ssh
     __prompt_suffix
@@ -32,6 +33,15 @@ __prompt_suffix_exit_code() {
         PS1+="✗($LAST_EXIT)"
     fi
 
+}
+
+__prompt_suffix_jobs() {
+    local job_count
+    job_count="$(jobs | wc --lines)"
+    if [ "$job_count" -ne 0 ]
+    then
+        PS1+="[j:$job_count]"
+    fi
 }
 
 __prompt_suffix_path() {
