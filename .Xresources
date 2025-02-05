@@ -8,10 +8,10 @@ URxvt.cursorBlink: true
 URxvt.cursorUnderline: true
 
 !! Fonts
-URxvt.font: xft:Ubuntu Mono:style=Regular:facesize=12:antialias=true:size=12
-URxvt.boldFont: xft:Ubuntu Mono:style=Bold:facesize=12:antialias=true:size=12
-URxvt.italicFont: xft:Ubuntu Mono:style=Italic:facesize=12:antialias=true:size=12
-URxvt.boldItalicFont: xft:Ubuntu Mono:style=Bold Italic:facesize=12:antialias=true:size=12
+URxvt.font: xft:Ubuntu Mono:style=Regular:antialias=true:size=12
+URxvt.boldFont: xft:Ubuntu Mono:style=Bold:antialias=true:size=12
+URxvt.italicFont: xft:Ubuntu Mono:style=Italic:antialias=true:size=12
+URxvt.boldItalicFont: xft:Ubuntu Mono:style=Bold Italic:antialias=true:size=12
 URxvt.letterSpace: 0
 
 !! Extensions
