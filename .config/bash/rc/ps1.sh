@@ -15,7 +15,7 @@ __prompt_setup() {
     # e.g. in a python virtual env we have '(.venv) <our PS1>'
     local ps1_delim
     # delimiter: ASCII unit separator
-    ps1_delim="$(printf "\x1f")"
+    ps1_delim="$(printf "\[\x1f\]")"
     # trim everything after the last delim instance (i.e. our PS1 changes)
     PS1="${PS1%"$ps1_delim"*}"
     # add the delim instance
