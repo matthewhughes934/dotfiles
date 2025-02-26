@@ -98,22 +98,30 @@
 [diff]
 	tool = vimdiff
 	cmd = "-c 'set diffopt+=iwhite'"
-	external = difft
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [difftool]
 	prompt = true
 [merge]
 	tool = vimdiff
+	conflictstyle = zdiff3
 [push]
 	default = current
 	autoSetupRemote = true
 [fetch]
 	prune = true
 [rebase]
-	autosquash = true
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [user]
 	name = "Matthew Hughes"
 	email = matthewhughes934@gmail.com
 [tag]
-	sort = -committerdate
+	sort = -version:refname
 [init]
 	defaultBranch = main
+[branch]
+	sort = -committerdate
