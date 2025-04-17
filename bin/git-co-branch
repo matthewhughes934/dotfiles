@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -o errexit -o pipefail -o nounset
+
+# checkout someone else's branch in a repo using something like:
+# https://github.com/asottile/scratch/wiki/only-track-my-branches
+
+if [ $# -lt 1 ]
+then
+    cmd_name="$(basename $0 | sed 's/git-//')"
+    echo "usage: git $cmd_name branch-name [ remote-name ]" >&2
+    exit 1
+fi
+
+BRANCH_NAME="$1"
+REMOTE_NAME="${2:-origin}"
+
+git fetch "$REMOTE_NAME" "$BRANCH_NAME"
+git checkout FETCH_HEAD -b "$BRANCH_NAME"
