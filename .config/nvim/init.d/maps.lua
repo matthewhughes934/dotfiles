@@ -1,21 +1,29 @@
 vim.keymap.set('n', 'ma', vim.diagnostic.goto_prev)
 
 function hasLSP(bufnr)
-  return #vim.lsp.get_clients({ bufnr = 0 }) > 0
+  return #vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() }) > 0
 end
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
 
-function lookupLSPOrTags()
+function listSymbols()
   if hasLSP() then
     builtin.lsp_document_symbols()
   else
     builtin.current_buffer_tags({results_width=100})
   end
 end
+vim.keymap.set('n', '<C-n>', listSymbols, { desc = 'Document Symbols' })
 
-vim.keymap.set('n', '<C-n>', lookupLSPOrTags, { desc = 'Document Symbols' })
+function lookupSymbol()
+  if hasLSP() then
+    vim.lsp.buf.definition()
+  else
+    vim.cmd('execute "tjump " . expand("<cword>")')
+  end
+end
+vim.keymap.set('n', '<C-]>', lookupSymbol, { desc = 'Lookup the symbol under the cursor' })
 
 -- maps for <C-n> completion
 for event, rhs in pairs({
