@@ -1,7 +1,10 @@
 vim.keymap.set('n', 'ma', vim.diagnostic.goto_prev)
 
 function hasLSP(bufnr)
-  return #vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() }) > 0
+  if bufnr == nil then
+    bufnr = vim.api.nvim_get_current_buf()
+  end
+  return #vim.lsp.get_clients({ bufnr = bufnr }) > 0
 end
 
 local builtin = require('telescope.builtin')
@@ -26,16 +29,32 @@ end
 vim.keymap.set('n', '<C-]>', lookupSymbol, { desc = 'Lookup the symbol under the cursor' })
 
 -- maps for <C-n> completion
+vim.api.nvim_create_autocmd(
+    "BufEnter",
+    {
+        callback = function(args)
+            if hasLSP(args.buf) then
+                rhs = "<C-x><C-o>"
+            else
+                rhs = "<C-n>"
+            end
+            vim.keymap.set("i", "<C-n>", rhs, {
+                buffer = buf,
+                noremap = true,
+                silent = true,
+            })
+        end
+    }
+)
+
 for event, rhs in pairs({
-  BufEnter  = "<C-n>",      -- default: completion
-  LspAttach = "<C-x><C-o>", -- if LSP: use omnifunc magic
-  LspDetach = "<C-n>",      -- if no more LSP: back to default
+  LspAttach = "<C-x><C-o>",
+  LspDetach = "<C-n>",
 }) do
   vim.api.nvim_create_autocmd(event, {
     callback = function(args)
-      local buf = args.buf
       vim.keymap.set("i", "<C-n>", rhs, {
-        buffer = buf,
+        buffer = args.buf,
         noremap = true,
         silent = true,
       })
