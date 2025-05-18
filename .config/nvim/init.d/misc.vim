@@ -27,3 +27,5 @@ set indentkeys-=0#
 set signcolumn=yes:1
 
 set noincsearch
+
+set foldmethod=manual
