@@ -29,3 +29,5 @@ set signcolumn=yes:1
 set noincsearch
 
 set foldmethod=manual
+
+command! -nargs=* T execute 'vertical terminal' '<args>'
