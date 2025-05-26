@@ -31,3 +31,6 @@ set noincsearch
 set foldmethod=manual
 
 command! -nargs=* T execute 'vertical terminal' '<args>'
+
+set spell
+set spelllang=en_au
