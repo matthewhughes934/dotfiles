@@ -7,17 +7,10 @@ function hasLSP(bufnr)
   return #vim.lsp.get_clients({ bufnr = bufnr }) > 0
 end
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
-
-function listSymbols()
-  if hasLSP() then
-    builtin.lsp_document_symbols()
-  else
-    builtin.current_buffer_tags({results_width=100})
-  end
+function isInGitRepo()
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    return vim.v.shell_error == 0
 end
-vim.keymap.set('n', '<C-n>', listSymbols, { desc = 'Document Symbols' })
 
 function lookupSymbol()
   if hasLSP() then
@@ -47,6 +40,25 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- maps for <C-p> completion
+vim.api.nvim_create_autocmd(
+    "BufEnter",
+    {
+        callback = function(args)
+            if isInGitRepo() then
+                rhs = fzfLua.git_files
+            else
+                rhs = fzfLua.files
+            end
+            vim.keymap.set("i", "<C-p>", rhs, {
+                buffer = args.buf,
+                noremap = true,
+                silent = true,
+            })
+        end
+    }
+)
+
 for event, rhs in pairs({
   LspAttach = "<C-x><C-o>",
   LspDetach = "<C-n>",
@@ -61,3 +73,26 @@ for event, rhs in pairs({
     end,
   })
 end
+
+fzfLua = require('fzf-lua')
+fzfLua.setup(
+    -- disable fancy unicode symbols
+    {
+        file_icons = false,
+        lsp = {
+            symbols = {
+                symbol_style = false
+            },
+        },
+    }
+)
+vim.keymap.set('n', '<C-p>', fzfLua.files, { desc = 'fzf find files' })
+
+function fuzzyListSymbols()
+  if hasLSP() then
+      fzfLua.lsp_document_symbols()
+  else
+      fzfLua.btags()
+  end
+end
+vim.keymap.set('n', '<C-n>', fuzzyListSymbols, { desc = 'list buffer symbols' })
