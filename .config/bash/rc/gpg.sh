@@ -1,1 +1,1 @@
-export GPG_TTY="$(tty)"
+export -n PINENTRY_USER_DATA

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -o errexit -o pipefail -o nounset
+
+case "${PINENTRY_USER_DATA:-}" in
+gtk)
+    exec pinentry-gtk "$@"
+    ;;
+*)
+    exec pinentry-curses "$@"
+    ;;
+esac
