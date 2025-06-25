@@ -52,5 +52,5 @@ fi
 export PINENTRY_USER_DATA="gtk"
 
 # Start window manager
-# view logs with `journalctl SYSLOG_IDENTIFIER=i3`
-/usr/bin/i3 2>&1 1>/dev/null | logger --tag i3
+# view logs with `journalctl --identifier i3`
+/usr/bin/i3 >/dev/null 2> >(logger --tag i3)
