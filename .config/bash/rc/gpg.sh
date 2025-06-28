@@ -1,1 +1,1 @@
-export -n PINENTRY_USER_DATA
+export PINENTRY_USER_DATA="default"
