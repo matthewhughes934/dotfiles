@@ -2,4 +2,7 @@
 require'lspconfig'.gopls.setup{}
 
 -- clangd: included in system 'clang' install
-require'lspconfig'.clangd.setup{}
+require'lspconfig'.clangd.setup{
+    -- disable for .proto files
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" }
+}
