@@ -6,3 +6,6 @@ require'lspconfig'.clangd.setup{
     -- disable for .proto files
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" }
 }
+
+-- needs: https://github.com/rust-lang/rust-analyzer
+require'lspconfig'.rust_analyzer.setup{}
