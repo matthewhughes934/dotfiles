@@ -8,4 +8,13 @@ require'lspconfig'.clangd.setup{
 }
 
 -- needs: https://github.com/rust-lang/rust-analyzer
-require'lspconfig'.rust_analyzer.setup{}
+vim.lsp.enable('rust_analyzer')
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ['rust-analyzer'] = {
+            checkOnSave = {
+                command = 'clippy',
+            },
+        },
+    },
+})
