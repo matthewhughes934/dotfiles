@@ -1,11 +1,11 @@
 -- needs: https://pkg.go.dev/golang.org/x/tools/gopls
-require'lspconfig'.gopls.setup{}
+vim.lsp.enable('gopls')
 
 -- clangd: included in system 'clang' install
-require'lspconfig'.clangd.setup{
-    -- disable for .proto files
-    filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" }
-}
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
+})
 
 -- needs: https://github.com/rust-lang/rust-analyzer
 vim.lsp.enable('rust_analyzer')
