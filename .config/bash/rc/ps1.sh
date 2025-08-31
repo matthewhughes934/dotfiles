@@ -30,7 +30,17 @@ __prompt_suffix_exit_code() {
     then
         PS1+="✓"
     else
-        PS1+="✗($LAST_EXIT)"
+        PS1+="✗"
+        # https://tldp.org/LDP/abs/html/exitcodes.html
+        SIGNAL_EXIT_BASE=128
+        SIGNAL_EXIT_MAX=$((SIGNAL_EXIT_BASE + $(kill -l SIGRTMAX)))
+        if [ "$LAST_EXIT" -gt $SIGNAL_EXIT_BASE ] && [ "$LAST_EXIT" -le $SIGNAL_EXIT_MAX ]
+        then
+            sig_num=$(("$LAST_EXIT" - 128))
+            PS1+="(sig:$(kill -l "$sig_num"))"
+        else
+            PS1+="($LAST_EXIT)"
+        fi
     fi
 
 }
