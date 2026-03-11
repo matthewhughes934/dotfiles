@@ -89,7 +89,7 @@
 [commit]
 	verbose=true
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.config/git/ignore
 	attributesFile = ~/.config/git/attributes
 	hooksPath = ~/.config/git/hooks
