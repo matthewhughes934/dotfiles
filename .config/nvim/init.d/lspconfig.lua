@@ -26,6 +26,7 @@ vim.lsp.config('rust_analyzer', {
             checkOnSave = {
                 command = 'clippy',
             },
+            rustc = { source = 'discover' },
         },
     },
 })
