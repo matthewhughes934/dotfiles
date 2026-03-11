@@ -13,5 +13,6 @@ nnoremap ]g :cp<CR>
 " in structured languages, go to next/prev function
 nnoremap [f [m[{
 nnoremap ]f ]}]m
+nnoremap <silent> cp :let @+ = expand("%")<CR>
 
 nnoremap <silent> <C-b> :FzfLua buffers<CR>
