@@ -6,6 +6,7 @@
 *.py    diff=python
 
 *.go    diff=golang
+*.rs    diff=rust
 
 # Vim settings
 # ==============
