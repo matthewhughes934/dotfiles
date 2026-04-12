@@ -14,5 +14,6 @@ nnoremap ]g :cp<CR>
 nnoremap [f [m[{
 nnoremap ]f ]}]m
 nnoremap <silent> cp :let @+ = expand("%")<CR>
+nnoremap <silent> cP :let @+ = expand("%") . ":" . line(".")<CR>
 
 nnoremap <silent> <C-b> :FzfLua buffers<CR>
