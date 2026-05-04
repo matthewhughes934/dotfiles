@@ -3,10 +3,6 @@
 URxvt*scrollWithBuffer: true
 URxvt.scrollBar: false
 
-!! Cursor
-URxvt.cursorBlink: true
-URxvt.cursorUnderline: true
-
 !! Fonts
 URxvt.font: xft:Ubuntu Mono:style=Regular:antialias=true:size=12
 URxvt.boldFont: xft:Ubuntu Mono:style=Bold:antialias=true:size=12

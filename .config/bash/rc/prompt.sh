@@ -8,6 +8,7 @@ PROMPT_COMMAND=(
     __ps1_suffix_path
     __ps1_suffix_ssh
     __ps1_suffix
+    __set_cursor
 )
 
 __ps1_setup() {
@@ -70,4 +71,10 @@ __ps1_suffix_ssh() {
 
 __ps1_suffix() {
     PS1+="$ "
+}
+
+__set_cursor() {
+    # DECSCUSR sequence
+    # vt100.net/docs/vt510-rm/DECSCUSR.html
+    printf '\x1b[3 q'
 }
