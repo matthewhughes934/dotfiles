@@ -2,15 +2,15 @@
 
 PS1=""
 PROMPT_COMMAND=(
-    __prompt_setup
-    __prompt_suffix_exit_code
-    __prompt_suffix_jobs
-    __prompt_suffix_path
-    __prompt_suffix_ssh
-    __prompt_suffix
+    __ps1_setup
+    __ps1_suffix_exit_code
+    __ps1_suffix_jobs
+    __ps1_suffix_path
+    __ps1_suffix_ssh
+    __ps1_suffix
 )
 
-__prompt_setup() {
+__ps1_setup() {
     # use a delimiter to separate our PS1 changes from anything else
     # e.g. in a python virtual env we have '(.venv) <our PS1>'
     local ps1_delim
@@ -22,7 +22,7 @@ __prompt_setup() {
     PS1+="$ps1_delim"
 }
 
-__prompt_suffix_exit_code() {
+__ps1_suffix_exit_code() {
     # must be first line, capture exit of command we just ran
     local LAST_EXIT="$?"
 
@@ -45,7 +45,7 @@ __prompt_suffix_exit_code() {
 
 }
 
-__prompt_suffix_jobs() {
+__ps1_suffix_jobs() {
     local job_count
     job_count="$(jobs | wc --lines)"
     if [ "$job_count" -ne 0 ]
@@ -54,13 +54,13 @@ __prompt_suffix_jobs() {
     fi
 }
 
-__prompt_suffix_path() {
+__ps1_suffix_path() {
     local white="\033[37;0m"
     local bold_cyan="\033[36;1m"
     PS1+="\[$bold_cyan\]\$PWD\[$white\]"
 }
 
-__prompt_suffix_ssh() {
+__ps1_suffix_ssh() {
     # add user@host to make it clear we've SSH'd
     if [ -n "${SSH_TTY:-}" ]
     then
@@ -68,6 +68,6 @@ __prompt_suffix_ssh() {
     fi
 }
 
-__prompt_suffix() {
+__ps1_suffix() {
     PS1+="$ "
 }
