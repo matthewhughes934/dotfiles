@@ -84,6 +84,9 @@ fzfLua.setup(
                 symbol_style = false
             },
         },
+        fzf_opts = {
+            ["--ignore-case"] = true,
+        },
     }
 )
 vim.keymap.set('n', '<C-p>', fzfLua.files, { desc = 'fzf find files' })
