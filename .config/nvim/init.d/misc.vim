@@ -35,3 +35,7 @@ autocmd TermOpen * setlocal nospell
 
 set spell
 set spelllang=en_au
+
+packadd! termdebug
+" use a vertical split for termdebugger
+let g:termdebug_wide = 1
